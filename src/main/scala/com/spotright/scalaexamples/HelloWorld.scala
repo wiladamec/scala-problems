@@ -1,8 +1,9 @@
 package com.spotright.scalaexamples
 
-object Example {
+object HelloWorld {
 
   def main(av: Array[String]): Unit = {
+
     println("Hello, World!")
   }
 }
