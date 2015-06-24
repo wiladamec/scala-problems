@@ -1,11 +1,13 @@
 package com.spotright.scalaexamples.euler
 
+import scala.annotation.tailrec
+
 object Problem2 {
 
-  def fib(m: Int, n: Int, max: Int, fibSeq: List[Int]): List[Int] = {
+  @tailrec def fib(firstTerm: Int, secondTerm: Int, max: Int, fibSeq: List[Int]): List[Int] = {
 
-    if(m > max) fibSeq.reverse
-    else m :: fib(n, m+n, max, fibSeq)
+    if(firstTerm > max) fibSeq.reverse
+    else fib(secondTerm, firstTerm + secondTerm, max, firstTerm :: fibSeq)
   }
 
   def main(av: Array[String]): Unit = {
