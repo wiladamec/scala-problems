@@ -12,6 +12,6 @@ object Problem2 {
 
   def main(av: Array[String]): Unit = {
 
-    println(fib(1, 2, 4000000, Nil).filter{_ % 2 == 0}.sum)
+    println(fib(1, 2, 4000000, Nil).filter(_ % 2 == 0).sum)
   }
 }
