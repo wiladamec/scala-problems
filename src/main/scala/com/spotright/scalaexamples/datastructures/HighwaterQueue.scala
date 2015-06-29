@@ -17,7 +17,9 @@ class HighwaterQueue[A](hwSize: Int, func: A => Unit) {
     this.queue.append(elem)
     this.length += 1
 
-    if(this.length == hwSize) this.queue.foreach(func(_))
+    if(this.length == hwSize) {
+      (1 to this.length).foreach { i => func(this.dequeue.get) }
+    }
   }
 
   def dequeue: Option[A] = {
