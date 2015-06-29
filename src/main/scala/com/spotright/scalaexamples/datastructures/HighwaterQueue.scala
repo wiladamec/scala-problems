@@ -1,35 +1,36 @@
 package com.spotright.scalaexamples.datastructures
 
-import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable
 
 class HighwaterQueue[A](hwSize: Int, func: A => Unit) {
 
-  private val queue: ArrayBuffer[A] = ArrayBuffer[A]()
-  var length: Int = 0
+  require(hwSize > 0, "Highwater size must be a positive integer.")
+
+  private val queue: mutable.Queue[A] = new mutable.Queue[A]()
 
   def isEmpty: Boolean = {
 
-    this.length == 0
+    this.queue.isEmpty
+  }
+
+  def size: Int = {
+
+    this.queue.size
   }
 
   def enqueue(elem: A): Unit = {
 
-    this.queue.append(elem)
-    this.length += 1
+    this.queue.enqueue(elem)
 
-    if(this.length == hwSize) {
-      (1 to this.length).foreach { i => func(this.dequeue.get) }
+    if(this.size == hwSize) {
+      (1 to this.size).foreach { i => func(this.dequeue.get) }
     }
   }
 
   def dequeue: Option[A] = {
 
-    if(!this.isEmpty) {
-      val elem = queue.head
-      this.queue.remove(0)
-      this.length -= 1
-
-      Some(elem)
+    if(this.queue.nonEmpty) {
+      Some(this.queue.dequeue())
     } else {
       None
     }
@@ -37,8 +38,8 @@ class HighwaterQueue[A](hwSize: Int, func: A => Unit) {
 
   def peek: Option[A] = {
 
-    if(!this.isEmpty) {
-      Some(this.queue.head)
+    if(this.queue.nonEmpty) {
+      this.queue.headOption
     } else {
       None
     }
