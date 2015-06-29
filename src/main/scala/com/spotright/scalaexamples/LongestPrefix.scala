@@ -13,8 +13,7 @@ object LongestPrefix {
 
   def main(av: Array[String]): Unit = {
 
-    // val strings = List("runway", "runway24", "runaway")
-    val strings = List("Cheesecake", "Cheesy", "Cheese dip")
+    val strings = List("runway", "runway24", "runaway")
     val prefixLength: Int = longestPrefix(strings)
 
     prefixLength match {
