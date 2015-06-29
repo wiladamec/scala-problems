@@ -19,6 +19,8 @@ object HWQueueTest {
     val ints = List(34, 21, 58, 87, 29, 28, 74, 99, 108, 125, 83)
     ints.foreach(elem => addToQueue(elem))
 
-    
+    (1 to 20).foreach { i =>
+      println(hwQueue.dequeue)
+    }
   }
 }
